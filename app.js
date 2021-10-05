@@ -10,11 +10,11 @@ fetch('https://api.themoviedb.org/3/movie/latest?api_key=b07d3efad9e75e49c88e831
     })
     .then(data => {
         console.log(data)
-        return data.id
+        return parseInt(data.id)
     })
     .then(data => {
-        let movieID = Math.floor(Math.random() * `${data.id}`);
-        fetch('https://api.themoviedb.org/3/movie/`${movieID}`?api_key=b07d3efad9e75e49c88e831539462c48')
+        let movieID = Math.floor(Math.random() * data);
+        fetch(`https://api.themoviedb.org/3/movie/${movieID}?api_key=b07d3efad9e75e49c88e831539462c48`)
             .then(res => {
                 return res.json()
             })

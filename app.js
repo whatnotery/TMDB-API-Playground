@@ -21,12 +21,15 @@ fetch('https://api.themoviedb.org/3/movie/latest?api_key=b07d3efad9e75e49c88e831
             .then(data =>{
                 title.textContent = `${data.title}`
                 poster.src = `https://image.tmdb.org/t/p/w300/${data.poster_path}`
-                tagline.textContent = `${data.tagline}`
+                tagline.innerHTML = `"${data.tagline}" <br> ${data.overview}`
             } )
     })
 .catch (err => {
     console.log(err)
 });
+
+// turn main logic into function, 
+//write if else logic if undefined or "data.adult = true" run function to display another film
 
 
 

@@ -2,7 +2,7 @@
 const title = document.querySelector('#title')
 const poster = document.querySelector('#poster')
 const plot = document.querySelector('#plot')
-let dataID = 0
+const filmSearch = document.querySelector('#filmSearch')
 
 fetch('https://api.themoviedb.org/3/movie/latest?api_key=b07d3efad9e75e49c88e831539462c48')
     .then(res => {
@@ -31,6 +31,7 @@ function getMovie(lastMovieID) {
                 getMovie(movieID)
             } else {
                 title.textContent = `${data.title} (${data.release_date.slice(0,4)})`
+                filmSearch.setAttribute("href",`https://www.google.com/search?q=${title.textContent.split(' ').join('+')}&tbm=vid`)
                 poster.src = `https://image.tmdb.org/t/p/w300/${data.poster_path}`
                 plot.innerHTML = `${data.overview}`
             }

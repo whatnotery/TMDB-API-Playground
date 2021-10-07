@@ -30,7 +30,7 @@ function getMovie(lastMovieID) {
                 console.log(data)
                 getMovie(movieID)
             } else {
-                title.textContent = `${data.title}`
+                title.textContent = `${data.title} (${data.release_date.slice(0,4)})`
                 poster.src = `https://image.tmdb.org/t/p/w300/${data.poster_path}`
                 plot.innerHTML = `${data.overview}`
             }

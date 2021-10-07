@@ -1,7 +1,7 @@
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: lightgrey;
-    min-height: 100vh;
+    min-height: 95vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -35,6 +35,16 @@ img {
     max-width: 15rem;
 }
 
+
+.social {
+	background:rgba(255,255,255, 0.3);
+	color: black;
+    border-radius: 5px;
+	padding: 5px;
+	position: absolute;
+    right: 5px;
+    bottom: 5px;
+}
 
 @media (max-width:768px) {
     main {

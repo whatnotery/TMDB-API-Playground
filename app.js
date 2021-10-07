@@ -39,7 +39,6 @@ function getMovie(data) {
 }
 
 
-//write if else logic if undefined or "data.adult = true" run function to display another film
 
 
 

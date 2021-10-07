@@ -19,8 +19,8 @@ fetch('https://api.themoviedb.org/3/movie/latest?api_key=b07d3efad9e75e49c88e831
         console.log(err)
     });
 
-function getMovie(data) {
-    let movieID = Math.floor(Math.random() * data);
+function getMovie(lastMovieID) {
+    let movieID = Math.floor(Math.random() * lastMovieID);
     fetch(`https://api.themoviedb.org/3/movie/${movieID}?api_key=b07d3efad9e75e49c88e831539462c48`)
         .then(res => {
             return res.json()

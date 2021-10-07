@@ -1,0 +1,32 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#filmtext {
+    max-width: 35%;
+    margin-left: 20px;
+}
+
+img {
+    max-width: 15rem;
+}
+
+@media (max-width:425px) {
+
+    main {
+        flex-direction: column;
+    }
+
+    #filmtext {
+        max-width: 85%;
+    }
+
+}

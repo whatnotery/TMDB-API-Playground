@@ -31,8 +31,9 @@ function getMovie(lastMovieID) {
                 getMovie(movieID)
             } else {
                 title.textContent = `${data.title} (${data.release_date.slice(0,4)})`
-                filmSearch.setAttribute("href",`https://www.google.com/search?q=${title.textContent.split(' ').join('+')}+film&tbm=vid`)
+                filmSearch.setAttribute('href',`https://www.google.com/search?q=${title.textContent.split(' ').join('+')}+film&tbm=vid`)
                 poster.src = `https://image.tmdb.org/t/p/w300/${data.poster_path}`
+                poster.setAttribute('alt', `movie poster for ${title.textContent}`)
                 plot.innerHTML = `${data.overview}`
             }
         })

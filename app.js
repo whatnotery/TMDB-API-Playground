@@ -1,18 +1,22 @@
 
-const title = document.querySelector('#title')
-const poster = document.querySelector('#poster')
-const plot = document.querySelector('#plot')
-const filmSearch = document.querySelector('#filmSearch')
+const title = document.getElementById('title')
+const poster = document.getElementById('poster')
+const plot = document.getElementById('plot')
+const filmSearch = document.getElementById('filmSearch')
 const imdblink = document.getElementById('imdbLink');
 const moviedblink = document.getElementById('theMovieDbLink');
-
+const newFilmButton = document.getElementById('newFilm');
+const saveFilmButton = document.getElementById('saveFilm')
+let latestFilm
+let currentFilmData 
+let savedFilms = []
 fetch('https://api.themoviedb.org/3/movie/latest?api_key=b07d3efad9e75e49c88e831539462c48')
     .then(res => {
         return res.json()
     })
     .then(data => {
-        
-         return parseInt(data.id)
+        latestFilm = data.id
+        return parseInt(data.id)
     })
    .then(data => {
         getMovie(data)
@@ -39,13 +43,17 @@ function getMovie(lastMovieID) {
                 poster.src = `https://image.tmdb.org/t/p/w300/${data.poster_path}`
                 poster.setAttribute('alt', `movie poster for ${title.textContent}`)
                 plot.innerHTML = `${data.overview}`
+                currentFilmData = data
             }
         })
+     
 
 }
 
 
+newFilmButton.addEventListener('click' , function (e) { getMovie(latestFilm); })
 
+saveFilmButton.addEventListener('click' , function (e) {savedFilms.unshift(currentFilmData)} )
 
 
 

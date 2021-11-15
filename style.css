@@ -50,6 +50,16 @@ img {
     top: 5px;
 }
 
+#filmContainer {
+    display: flex;
+    overflow:scroll;
+}
+
+.filmItem {
+    display: flex;
+    flex-direction: column;
+}
+
 .hide {
     display: none !important;
 }

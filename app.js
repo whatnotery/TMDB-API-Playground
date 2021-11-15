@@ -12,7 +12,7 @@ const saveFilmButton = document.getElementById('saveFilm');
 const toggleButton1 = document.getElementById('toggle1');
 const toggleButton2 = document.getElementById('toggle2');
 const exportButton = document.getElementById('exportFilm');
-
+const filmContainer = document.getElementById('filmContainer')
 let latestFilm;
 let currentFilmData ;
 let savedFilms = [];
@@ -75,17 +75,48 @@ function switchContent() {
     if (libraryWrap.classList.contains('hide')) {
         filmWrap.classList.add('hide');
         libraryWrap.classList.remove('hide');
+        showLibrary()
     } else if (filmWrap.classList.contains('hide')) {
         libraryWrap.classList.add('hide');
         filmWrap.classList.remove('hide');
+        removeAllChildNodes(filmContainer)
     };
 };
 
+function showLibrary() {
+    savedFilms.forEach( function (object, index) {
+        filmListItem = document.createElement('div')
+        filmListItem.classList.add('filmItem')
+        filmListItem.id = `film-${index +1}`
+        filmPoster = document.createElement('img')
+        filmPoster.src = `https://image.tmdb.org/t/p/w300/${object.poster_path}`
+        filmTitle = document.createElement('p')
+        filmTitle.textContent = object.title
+        deleteButton = document.createElement('button')
+        deleteButton.innerHTML = 'Remove From List'
+        deleteButton.addEventListener('click', function (e) 
+        {savedFilms.splice(index, 1);
+        removeAllChildNodes(filmContainer);
+        showLibrary(); })
+        filmListItem.appendChild(filmTitle)
+        filmListItem.appendChild(filmPoster)
+        filmListItem.appendChild(deleteButton)
+        filmContainer.appendChild(filmListItem)
+    }
+        )
+
+}
+
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
 
 
 newFilmButton.addEventListener('click' , function (e) { getMovie(latestFilm); });
 
-saveFilmButton.addEventListener('click' , function (e) {savedFilms.unshift(currentFilmData)} );
+saveFilmButton.addEventListener('click' , function (e) {if (savedFilms.includes(currentFilmData) === false) savedFilms.unshift(currentFilmData)} );
 
 exportButton.addEventListener('click' , function (e) { downloadCSV()});
 

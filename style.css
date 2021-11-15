@@ -65,8 +65,11 @@ img {
 }
 
 @media (max-width:768px) {
+    
     main {
         max-width: 65%;
+    }
+    #filmWrap {
         flex-direction: column;
     }
 
@@ -75,6 +78,8 @@ img {
 
     main {
         max-width: 85%;
+    }
+    #filmWrap {
         flex-direction: column;
     }
 

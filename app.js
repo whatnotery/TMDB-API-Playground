@@ -75,11 +75,16 @@ function switchContent() {
     if (libraryWrap.classList.contains('hide')) {
         filmWrap.classList.add('hide');
         libraryWrap.classList.remove('hide');
-        showLibrary()
+        if (savedFilms.length === 0) {
+            noFilmsMessage = document.createElement('h2');
+            noFilmsMessage.textContent = 'No Saved Films';
+            libraryWrap.appendChild(noFilmsMessage);
+        } else {showLibrary()}
     } else if (filmWrap.classList.contains('hide')) {
         libraryWrap.classList.add('hide');
         filmWrap.classList.remove('hide');
         removeAllChildNodes(filmContainer)
+        noFilmsMessage.parentNode.removeChild(noFilmsMessage)
     };
 };
 

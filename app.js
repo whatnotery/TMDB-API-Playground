@@ -55,6 +55,21 @@ function getMovie(lastMovieID) {
         });
     };
 
+function addToLibrary(filmData) {
+    if (savedFilms.includes(filmData) === false) 
+    savedFilms.unshift(filmData)
+    if (localStorage.getItem("savedFilmsLocal") === null) {
+        localStorage.setItem('savedFilmsLocal', JSON.stringify(savedFilms))
+      } else {
+        let localSavedFilms = JSON.parse(localStorage.getItem('savedFilmsLocal'))
+        let joinedFilms = savedFilms.concat(localSavedFilms)
+        localStorage.setItem('savedFilmsLocal', JSON.stringify(joinedFilms))
+
+      }
+    
+
+}
+
 function downloadCSV() {
     ids = savedFilms.map( function (film) {
         return film.id;
@@ -87,6 +102,9 @@ function switchContent() {
         noFilmsMessage.parentNode.removeChild(noFilmsMessage)
     };
 };
+
+// function joinLocalStorage()
+
 
 function showLibrary() {
     savedFilms.forEach( function (object, index) {
@@ -121,7 +139,7 @@ function removeAllChildNodes(parent) {
 
 newFilmButton.addEventListener('click' , function (e) { getMovie(latestFilm); });
 
-saveFilmButton.addEventListener('click' , function (e) {if (savedFilms.includes(currentFilmData) === false) savedFilms.unshift(currentFilmData)} );
+saveFilmButton.addEventListener('click' , function (e) {addToLibrary(currentFilmData)} );
 
 exportButton.addEventListener('click' , function (e) { downloadCSV()});
 

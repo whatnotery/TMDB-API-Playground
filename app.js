@@ -62,9 +62,10 @@ function addToLibrary(filmData) {
         localStorage.setItem('savedFilmsLocal', JSON.stringify(savedFilms))
       } else {
         let localSavedFilms = JSON.parse(localStorage.getItem('savedFilmsLocal'))
+        
         let joinedFilms = savedFilms.concat(localSavedFilms)
         localStorage.setItem('savedFilmsLocal', JSON.stringify(joinedFilms))
-
+        /* if item in savedFilms matches item in localSavedFilms do not concat to joined films */
       }
     
 

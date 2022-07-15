@@ -17,7 +17,7 @@ let latestFilm;
 let currentFilmData ;
 let savedFilms = [];
 
-fetch(`https://api.themoviedb.org/3/movie/latest?api_key=${env.MOVIE_DB_AUTH}`)
+fetch(`https://api.themoviedb.org/3/movie/latest?api_key=${MOVIE_DB_AUTH}`)
     .then(res => {
         return res.json();
     })
@@ -35,7 +35,7 @@ fetch(`https://api.themoviedb.org/3/movie/latest?api_key=${env.MOVIE_DB_AUTH}`)
     
 function getMovie(lastMovieID) {
     let movieID = Math.floor(Math.random() * lastMovieID);
-    fetch(`https://api.themoviedb.org/3/movie/${movieID}?api_key=${env.MOVIE_DB_AUTH}`)
+    fetch(`https://api.themoviedb.org/3/movie/${movieID}?api_key=${MOVIE_DB_AUTH}`)
         .then(res => {
             return res.json();
         })

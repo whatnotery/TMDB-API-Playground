@@ -35,7 +35,8 @@ fetch(`https://api.themoviedb.org/3/movie/latest?api_key=b07d3efad9e75e49c88e831
     
 function getMovie(lastMovieID) {
     let movieID = Math.floor(Math.random() * lastMovieID);
-    fetch(`https://api.themoviedb.org/3/movie/${movieID}?api_key=b07d3efad9e75e49c88e831539462c48`)
+    //fetch(`https://api.themoviedb.org/3/movie/${movieID}?api_key=b07d3efad9e75e49c88e831539462c48`)
+    fetch(https://randommovierailsapi-production.up.railway.app/films)
         .then(res => {
             return res.json();
         })

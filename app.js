@@ -46,19 +46,20 @@ function getMovie() {
         //    return res.json();
         //})
         .then(data => {
-            //  if (data.adult === true || !data.title || !data.poster_path || !data.overview) {
-            //  getMovie(movieID);
-            //} else {
-            title.textContent = `${data.title} (${data.release_date.slice(0, 4)})`;
-            filmSearch.setAttribute('href', `https://www.google.com/search?q=${title.textContent.split(' ').join('+')}+film&tbm=vid`);
-            imdblink.setAttribute('href', `https://www.imdb.com/title/${data.imdb_id}`);
-            moviedblink.setAttribute('href', `https://www.themoviedb.org/movie/${data.id}`);
-            poster.src = `https://image.tmdb.org/t/p/w300/${data.poster_path}`;
-            poster.setAttribute('alt', `movie poster for ${title.textContent}`);
-            plot.innerHTML = `${data.overview}`;
-            currentFilmData = data;
-
-        });
+            if (data.adult === true || !data.title || !data.poster_path || !data.overview) {
+                getMovie();
+            } else {
+                title.textContent = `${data.title} (${data.release_date.slice(0, 4)})`;
+                filmSearch.setAttribute('href', `https://www.google.com/search?q=${title.textContent.split(' ').join('+')}+film&tbm=vid`);
+                imdblink.setAttribute('href', `https://www.imdb.com/title/${data.imdb_id}`);
+                moviedblink.setAttribute('href', `https://www.themoviedb.org/movie/${data.id}`);
+                poster.src = `https://image.tmdb.org/t/p/w300/${data.poster_path}`;
+                poster.setAttribute('alt', `movie poster for ${title.textContent}`);
+                plot.innerHTML = `${data.overview}`;
+                currentFilmData = data;
+            };
+        }
+        )
 };
 
 getMovie()

@@ -36,7 +36,12 @@ let savedFilms = [];
 function getMovie() {
    // let movieID = Math.floor(Math.random() * lastMovieID);
   // fetch(`https://api.themoviedb.org/3/movie/${movieID}?api_key=b07d3efad9e75e49c88e831539462c48`
-    fetch(`https://randommovierailsapi-production.up.railway.app/films`)
+    fetch(`https://randommovierailsapi-production.up.railway.app/films`, {
+        method: 'GET',
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+        },
+      })
         //.then(res => {
         //    return res.json();
         //})

@@ -17,28 +17,28 @@ let latestFilm;
 let currentFilmData ;
 let savedFilms = [];
 
-fetch(`https://api.themoviedb.org/3/movie/latest?api_key=b07d3efad9e75e49c88e831539462c48`)
-    .then(res => {
-        return res.json();
-    })
-    .then(data => {
-        latestFilm = data.id;
-        return parseInt(data.id);
-    })
-   .then(data => {
-        getMovie(data);
-    })
-    .catch(err => {
-        console.log(err);
-    });
-
+//fetch(`https://api.themoviedb.org/3/movie/latest?api_key=b07d3efad9e75e49c88e831539462c48`)
+//    .then(res => {
+//        return res.json();
+//    })
+//    .then(data => {
+//        latestFilm = data.id;
+//        return parseInt(data.id);
+//    })
+//   .then(data => {
+//        getMovie(data);
+//    })
+//    .catch(err => {
+//        console.log(err);
+//    });
+//
     
-function getMovie(lastMovieID) {
-    let movieID = Math.floor(Math.random() * lastMovieID);
-    fetch(`https://api.themoviedb.org/3/movie/${movieID}?api_key=b07d3efad9e75e49c88e831539462c48`)
-        .then(res => {
-            return res.json();
-        })
+function getMovie() {
+   // let movieID = Math.floor(Math.random() * lastMovieID);
+    fetch(`https://randommovierailsapi-production.up.railway.app/films`)
+        //.then(res => {
+        //    return res.json();
+        //})
         .then(data => {
             if (data.adult === true || !data.title || !data.poster_path || !data.overview) {
                 getMovie(movieID);
@@ -54,6 +54,8 @@ function getMovie(lastMovieID) {
             };
         });
     };
+
+    getMovie();
 
 function downloadCSV() {
     ids = savedFilms.map( function (film) {

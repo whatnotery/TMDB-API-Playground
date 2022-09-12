@@ -42,9 +42,9 @@ function getMovie() {
             'X-Requested-With': 'XMLHttpRequest'
         },
     })
-        //.then(res => {
-        //    return res.json();
-        //})
+        .then(res => {
+            return res.json();
+        })
         .then(data => {
             if (data.adult === true || !data.title || !data.poster_path || !data.overview) {
                 getMovie();

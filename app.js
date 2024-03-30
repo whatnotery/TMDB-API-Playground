@@ -7,12 +7,16 @@ const filmWrap = document.getElementById('filmWrap');
 const libraryWrap = document.getElementById('libraryWrap');
 const imdblink = document.getElementById('imdbLink');
 const moviedblink = document.getElementById('theMovieDbLink');
+const youtubelink = document.getElementById('youtubeLink');
 const newFilmButton = document.getElementById('newFilm');
 const saveFilmButton = document.getElementById('saveFilm');
 const toggleButton1 = document.getElementById('toggle1');
 const toggleButton2 = document.getElementById('toggle2');
 const exportButton = document.getElementById('exportFilm');
 const filmContainer = document.getElementById('filmContainer')
+const streamingProviders = document.getElementById('streamingProviders')
+const rentalProviders = document.getElementById('rentalProviders')
+
 let latestFilm;
 let currentFilmData;
 let savedFilms = [];
@@ -22,7 +26,7 @@ getMovie()
 
 
 function getMovie() {
-    fetch(`https://randommovierailsapi-production.up.railway.app/films`, {
+    fetch(`http://127.0.0.1:3000/films`, {
         method: 'GET',
         headers: {
             'X-Requested-With': 'XMLHttpRequest'
@@ -39,9 +43,12 @@ function getMovie() {
                 filmSearch.setAttribute('href', `https://www.google.com/search?q=${title.textContent.split(' ').join('+')}+film&tbm=vid`);
                 imdblink.setAttribute('href', `https://www.imdb.com/title/${data.imdb_id}`);
                 moviedblink.setAttribute('href', `https://www.themoviedb.org/movie/${data.id}`);
+                youtubelink.setAttribute('href', data.youtube_link)
                 poster.src = `https://image.tmdb.org/t/p/w300/${data.poster_path}`;
                 poster.setAttribute('alt', `movie poster for ${title.textContent}`);
                 plot.innerHTML = `${data.overview}`;
+                streamingProviders.innerHTML = `${data.streaming_providers.join(', ') || "none"}`
+                rentalProviders.innerHTML = `${data.rental_providers.join(', ') || "none"}`
                 currentFilmData = data;
             };
         }

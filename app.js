@@ -33,12 +33,15 @@ function getMovie() {
         },
     })
         .then(res => {
+            console.log(res)
             return res.json();
         })
         .then(data => {
             if (data.adult === true || !data.title || !data.poster_path || !data.overview) {
                 getMovie();
             } else {
+                console.log(data)
+
                 title.textContent = `${data.title} (${data.release_date.slice(0, 4)})`;
                 filmSearch.setAttribute('href', `https://www.google.com/search?q=${title.textContent.split(' ').join('+')}+film&tbm=vid`);
                 imdblink.setAttribute('href', `https://www.imdb.com/title/${data.imdb_id}`);
@@ -47,8 +50,18 @@ function getMovie() {
                 poster.src = `https://image.tmdb.org/t/p/w300/${data.poster_path}`;
                 poster.setAttribute('alt', `movie poster for ${title.textContent}`);
                 plot.innerHTML = `${data.overview}`;
-                streamingProviders.innerHTML = `${data.streaming_providers.join(', ') || "none"}`
-                rentalProviders.innerHTML = `${data.rental_providers.join(', ') || "none"}`
+                if (data.streaming_providers === undefined) {
+                    streamingProviders.innerHTML = "none"
+
+                } else {
+                    streamingProviders.innerHTML = `${data.streaming_providers.join(', ')}`
+                }
+                if (data.rental_providers === undefined) {
+                    rentalProviders.innerHTML = "none"
+                } else {
+                    rentalProviders.innerHTML = `${data.rental_providers.join(', ')}`
+
+                }
                 currentFilmData = data;
             };
         }

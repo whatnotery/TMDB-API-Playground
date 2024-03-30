@@ -37,35 +37,29 @@ function getMovie() {
             return res.json();
         })
         .then(data => {
-            if (data.adult === true || !data.title || !data.poster_path || !data.overview) {
-                getMovie();
+            console.log(data)
+            title.textContent = `${data.title} (${data.release_date.slice(0, 4)})`;
+            filmSearch.setAttribute('href', `https://www.google.com/search?q=${title.textContent.split(' ').join('+')}+film&tbm=vid`);
+            imdblink.setAttribute('href', `https://www.imdb.com/title/${data.imdb_id}`);
+            moviedblink.setAttribute('href', `https://www.themoviedb.org/movie/${data.id}`);
+            youtubelink.setAttribute('href', data.youtube_link)
+            poster.src = `https://image.tmdb.org/t/p/w300/${data.poster_path}`;
+            poster.setAttribute('alt', `movie poster for ${title.textContent}`);
+            plot.innerHTML = `${data.overview}`;
+            if (data.streaming_providers === undefined) {
+                streamingProviders.innerHTML = "none"
+
             } else {
-                console.log(data)
+                streamingProviders.innerHTML = `${data.streaming_providers.join(', ')}`
+            }
+            if (data.rental_providers === undefined) {
+                rentalProviders.innerHTML = "none"
+            } else {
+                rentalProviders.innerHTML = `${data.rental_providers.join(', ')}`
 
-                title.textContent = `${data.title} (${data.release_date.slice(0, 4)})`;
-                filmSearch.setAttribute('href', `https://www.google.com/search?q=${title.textContent.split(' ').join('+')}+film&tbm=vid`);
-                imdblink.setAttribute('href', `https://www.imdb.com/title/${data.imdb_id}`);
-                moviedblink.setAttribute('href', `https://www.themoviedb.org/movie/${data.id}`);
-                youtubelink.setAttribute('href', data.youtube_link)
-                poster.src = `https://image.tmdb.org/t/p/w300/${data.poster_path}`;
-                poster.setAttribute('alt', `movie poster for ${title.textContent}`);
-                plot.innerHTML = `${data.overview}`;
-                if (data.streaming_providers === undefined) {
-                    streamingProviders.innerHTML = "none"
-
-                } else {
-                    streamingProviders.innerHTML = `${data.streaming_providers.join(', ')}`
-                }
-                if (data.rental_providers === undefined) {
-                    rentalProviders.innerHTML = "none"
-                } else {
-                    rentalProviders.innerHTML = `${data.rental_providers.join(', ')}`
-
-                }
-                currentFilmData = data;
-            };
-        }
-        )
+            }
+            currentFilmData = data;
+        })
 };
 
 

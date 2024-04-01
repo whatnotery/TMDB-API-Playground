@@ -45,7 +45,7 @@ function getMovie() {
             youtubelink.setAttribute('href', data.youtube_link)
             poster.src = `https://image.tmdb.org/t/p/w300/${data.poster}`;
             poster.setAttribute('alt', `movie poster for ${title.textContent}`);
-            plot.innerHTML = `${data.overview}`;
+            plot.innerHTML = `${data.plot}`;
             if (data.streaming_providers === undefined) {
                 streamingProviders.innerHTML = "none"
 

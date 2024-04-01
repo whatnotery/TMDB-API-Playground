@@ -26,7 +26,7 @@ getMovie()
 
 
 function getMovie() {
-    fetch(`https://randommovierailsapi-production.up.railway.app/films`, {
+    fetch(`https://randommovierailsapi-production.up.railway.app/films/random`, {
         method: 'GET',
         headers: {
             'X-Requested-With': 'XMLHttpRequest'

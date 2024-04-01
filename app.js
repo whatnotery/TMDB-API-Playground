@@ -38,7 +38,7 @@ function getMovie() {
         })
         .then(data => {
             console.log(data)
-            title.textContent = `${data.title} (${data.release_date.slice(0, 4)})`;
+            title.textContent = `${data.title} (${data.year})`;
             filmSearch.setAttribute('href', `https://www.google.com/search?q=${title.textContent.split(' ').join('+')}+film&tbm=vid`);
             imdblink.setAttribute('href', `https://www.imdb.com/title/${data.imdb_id}`);
             moviedblink.setAttribute('href', `https://www.themoviedb.org/movie/${data.id}`);
